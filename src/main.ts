@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
 import router from './router/index'
-import { ElCard } from 'element-plus'
+import { ElCard, ElImage, ElButton } from 'element-plus'
 
 import './styles/index.scss'
 
@@ -14,6 +14,6 @@ app.use(router)
 app.config.globalProperties.$ELEMENT = {
   useSource: true,
 }
-app.use(ElCard)
+app.use(ElCard, ElImage, ElButton)
 
 app.mount('#app')

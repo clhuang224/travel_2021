@@ -1,21 +1,41 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from '../components/HelloWorld.vue'
+import WeatherBlock from '../components/WeatherBlock.vue'
+import MenuBlock from '../components/MenuBlock.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="../assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="primary">
+    <img
+      class="background"
+      src="../assets/home/background.png"
+      alt="background"
+    />
+    <img
+      class="logo"
+      src="../assets/logo.png"
+      alt="logo"
+    />
+  </div>
+  <WeatherBlock />
+  <MenuBlock />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+<style lang="scss" scoped>
+.primary {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .background {
+    width: 100%;
+    height: auto;
+  }
+  .logo {
+    width: 22.1875%;
+    position: absolute;
+    bottom: 62.4614%;
+    left: 38.9062%;
+  }
 }
 </style>

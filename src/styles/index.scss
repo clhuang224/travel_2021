@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+
 :root {
   --color-blue: #6e9292;
   --color-blue-light: #a7d4da;
@@ -7,4 +10,54 @@
   --color-yellow-light: #e6ddb2;
   --color-red: #aa796c;
   --color-red-light: #e6beb4;
+
+  --text-color-header: #000;
+  --text-color-paragraph: rgba(0, 0, 0, 0.5);
+  --text-color-subparagraph: rgba(0, 0, 0, 0.3);
+  --text-color-paragraph-dark: #f8f8f8;
+
+  font-size: 62.5%;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+html {
+  background-color: #000;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1920px;
+  background-color: #fff;
+}
+
+h1 {
+  font-size: 4.8rem;
+  line-height: 1.4;
+}
+
+h2 {
+  font-size: 3.2rem;
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 2.8rem;
+  line-height: 1.4;
+}
+
+h4 {
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
