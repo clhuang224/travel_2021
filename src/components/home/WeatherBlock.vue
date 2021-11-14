@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue-demi'
-import { useWeather } from '../stores/weather'
+import { useWeather } from '../../stores/weather'
 import { ArrowLeftBold, ArrowRightBold } from '@element-plus/icons'
 
 

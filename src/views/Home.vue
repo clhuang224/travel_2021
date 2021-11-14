@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import WeatherBlock from '../components/WeatherBlock.vue'
-import MenuBlock from '../components/MenuBlock.vue'
+import WeatherBlock from '../components/home/WeatherBlock.vue'
+import MenuBlock from '../components/home/MenuBlock.vue'
+import AppSection from '../components/AppSection.vue'
+import SpotCard from '../components/spot/BaseCard.vue'
+import { useSpot } from '../stores/spot'
+
+const Spot = useSpot()
+Spot.getSpots(3)
 </script>
 
 <template>
@@ -18,6 +24,23 @@ import MenuBlock from '../components/MenuBlock.vue'
   </div>
   <WeatherBlock />
   <MenuBlock />
+  <AppSection
+    title="熱門景點"
+    color="#6E9292"
+    link="/spot"
+  >
+    <div class="spot-cards">
+      <SpotCard
+        v-for="spot in Spot.spots"
+        :key="spot.id"
+        :id="spot.id"
+        :title="spot.name"
+        :image="spot.image"
+        :location="spot.location"
+        class="card"
+      />
+    </div>
+  </AppSection>
 </template>
 
 
@@ -36,6 +59,15 @@ import MenuBlock from '../components/MenuBlock.vue'
     position: absolute;
     bottom: 62.4614%;
     left: 38.9062%;
+  }
+}
+
+.spot-cards {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 54px;
+  > div {
+    width: calc(33% - 23px);
   }
 }
 </style>

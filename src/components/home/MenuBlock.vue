@@ -1,30 +1,30 @@
 <script setup lang="ts">
 
-import Spot from '../assets/home/menu/spot.png'
-import Food from '../assets/home/menu/food.png'
-import Accommodation from '../assets/home/menu/accommodation.png'
-import Transportation from '../assets/home/menu/transportation.png'
+import Spot from '../../assets/home/menu/spot.png'
+import Food from '../../assets/home/menu/food.png'
+import Accommodation from '../../assets/home/menu/accommodation.png'
+import Transportation from '../../assets/home/menu/transportation.png'
 
 const list = [
   {
     text: '景點',
     image: Spot,
-    path: '/spot'
+    link: '/spot'
   },
   {
     text: '美食',
     image: Food,
-    path: '/food'
+    link: '/food'
   },
   {
     text: '住宿',
     image: Accommodation,
-    path: '/accommodation'
+    link: '/accommodation'
   },
   {
     text: '交通',
     image: Transportation,
-    path: '/transportation'
+    link: '/transportation'
   }
 ]
 
@@ -36,7 +36,7 @@ const list = [
       v-for="item in list"
       :key="item.text"
     >
-      <router-link :to="item.path">
+      <router-link :to="item.link">
         <img :src="item.image" :alt="item.text">
         <div>{{ item.text }}</div>
       </router-link>
