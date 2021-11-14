@@ -15,31 +15,35 @@ function GetAuthorizationHeader() {
 }
 
 const localStorageKeys = {
-  subscribed: 'subscribed-spots'
+  subscribed: 'subscribed-foods'
 }
 
-export const useSpot = defineStore('spot', {
+export const useFood = defineStore('food', {
   state: () =>  ({
-    spots: [] as Array<{
+    foods: [] as Array<{
       id: string,
       name: string,
       location: string,
       address: string,
-      image: string
+      image: string,
+      time: string,
+      phone: string
     }>,
     subscribedIds: JSON.parse(localStorage.getItem(localStorageKeys.subscribed) ?? '[]') as Array<string>
   }),
   actions: {
-    async getSpots (perPage: number = 6, page: number = 1) {
+    async getFoods (perPage: number = 6, page: number = 1) {
       const res: { data: Array<{
         Address: string,
         ID: string,
         Name: string,
         Picture: {
           PictureUrl1: string
-        }
+        },
+        OpenTime: string,
+        Phone: string
       }> } = await axios.get(
-        'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot',
+        'https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant',
         {
           headers: GetAuthorizationHeader(),
           params: {
@@ -49,12 +53,14 @@ export const useSpot = defineStore('spot', {
           }
         }
       )
-      this.spots = res.data.map((el) => ({
+      this.foods = res.data.map((el) => ({
         id: el.ID,
         name: el.Name,
         address: el.Address,
         location: Object.keys(taiwanRegionNameMapType).find((name) => el.Address.includes(name)) ?? '',
-        image: el.Picture.PictureUrl1
+        image: el.Picture.PictureUrl1,
+        time: el.OpenTime,
+        phone: el.Phone
       }))
     },
     async toggleSubscribe (id: string, isSubscribe: boolean) {
