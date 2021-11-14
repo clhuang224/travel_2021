@@ -3,15 +3,9 @@ import { computed, ref } from 'vue-demi'
 import { useWeather } from '../stores/weather'
 import { ArrowLeftBold, ArrowRightBold } from '@element-plus/icons'
 
+
 const Weather = useWeather()
 Weather.getWeatherRecords()
-
-const records = computed(() => {
-  return Weather.records.map((record) => ({
-    ...record,
-    src: new URL(`../assets/weather/${record.type}.png`, import.meta.url).href
-  }))
-})
 
 const list = ref<HTMLUListElement | null>(null)
 const scroll = (isLeft: boolean) => {
@@ -33,16 +27,14 @@ const scroll = (isLeft: boolean) => {
       </button>
       <ul ref="list">
         <li
-          v-for="record in records"
+          v-for="record in Weather.records"
           :key="record.regionName"
         >
           <div class="title">{{ record.regionName }}</div>
-          <el-image
+          <img
             class="image"
-            :src="record.src"
+            :src="record.image"
             :alt="record.content"
-            lazy
-            fit="contain"
           />
           <div class="degree">
             {{ record.averageTemp }}
