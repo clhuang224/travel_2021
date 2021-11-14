@@ -2,7 +2,7 @@
 import { Location, CollectionTag } from '@element-plus/icons'
 import { computed } from 'vue-demi'
 import { useRouter } from 'vue-router'
-import { useFood } from '../../stores/food'
+import { useAccommodation } from '../../stores/accommodation'
 import NoImage from '../../assets/no-image.png'
 
 const props = defineProps<{
@@ -10,14 +10,14 @@ const props = defineProps<{
   title: string,
   location: string,
   image: string,
-  time: string,
+  service: string,
   phone: string,
   address: string
 }>()
 
-const Food = useFood()
+const Accommodation = useAccommodation()
 const router = useRouter()
-const isSubscribed = computed(() => Food.subscribedIds.includes(props.id))
+const isSubscribed = computed(() => Accommodation.subscribedIds.includes(props.id))
 
 </script>
 
@@ -29,7 +29,7 @@ const isSubscribed = computed(() => Food.subscribedIds.includes(props.id))
 >
   <button
     :class="{ active: isSubscribed }"
-    @click.stop="Food.toggleSubscribe(id, !isSubscribed)"
+    @click.stop="Accommodation.toggleSubscribe(id, !isSubscribed)"
   >
     <CollectionTag />
   </button>
@@ -42,7 +42,7 @@ const isSubscribed = computed(() => Food.subscribedIds.includes(props.id))
       </div>
     </div>
     <div class="address">{{ address }}</div>
-    <div>{{ `營業時間：${time}` }}</div>
+    <div>{{ `服務項目：${service || '-'}` }}</div>
     <div>{{ `電話：${phone}` }}</div>
   </div>
 </div>
@@ -88,12 +88,6 @@ const isSubscribed = computed(() => Food.subscribedIds.includes(props.id))
     background-color: #fff;
     bottom: 0;
     padding: 8px 16px 18px;
-    & > div:not(:first-child) {
-      width: 100%;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-    }
     .title {
       width: 100%;
       display: flex;
@@ -106,6 +100,12 @@ const isSubscribed = computed(() => Food.subscribedIds.includes(props.id))
         white-space: nowrap;
         overflow: hidden;
       }
+    }
+    & > div:not(:first-child) {
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
     .location {
       display: flex;

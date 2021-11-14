@@ -4,14 +4,19 @@ import MenuBlock from '../components/home/MenuBlock.vue'
 import AppSection from '../components/AppSection.vue'
 import SpotCard from '../components/spot/BaseCard.vue'
 import FoodCard from '../components/food/BaseCard.vue'
+import AccommodationCard from '../components/accommodation/BaseCard.vue'
 import { useSpot } from '../stores/spot'
 import { useFood } from '../stores/food'
+import { useAccommodation } from '../stores/accommodation'
 
 const Spot = useSpot()
 Spot.getSpots(3)
 
 const Food = useFood()
 Food.getFoods(3)
+
+const Accommodation = useAccommodation()
+Accommodation.getAccommodations(3)
 </script>
 
 <template>
@@ -62,6 +67,26 @@ Food.getFoods(3)
         :address="food.address"
         :phone="food.phone"
         :time="food.time"
+        class="card"
+      />
+    </div>
+  </AppSection>
+  <AppSection
+    title="住宿推薦"
+    color="#C2BB96"
+    link="/accommodation"
+  >
+    <div class="list">
+      <AccommodationCard
+        v-for="accomodation in Accommodation.accommodations"
+        :key="accomodation.id"
+        :id="accomodation.id"
+        :title="accomodation.name"
+        :image="accomodation.image"
+        :location="accomodation.location"
+        :address="accomodation.address"
+        :phone="accomodation.phone"
+        :service="accomodation.service"
         class="card"
       />
     </div>

@@ -15,7 +15,7 @@ defineProps<{ title: string, color: string, link: string }>()
 
 <style lang="scss" scoped>
 section {
-  margin-top: 50px;
+  margin-top: 80px;
   h3 {
     display: flex;
     justify-content: space-between;
